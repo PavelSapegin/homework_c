@@ -5,6 +5,7 @@ int main() {
     int a,b;
     scanf("%d %d", &a, &b);
 
+    int add = (a < 0 || b < 0) ? 1 : 0;
     int q = 0;
     int sign = 1;
     
@@ -16,14 +17,17 @@ int main() {
     if ((a < 0 && b > 0) || (a > 0 && b < 0))
         sign = -1;
     
+    
+    
     a = abs(a);
     b = abs(b);
 
-    while (a > b) {
+    while (a >= b) {
         a -= b;
         q++;
     }
-
-    printf("%d\n", q*sign);
+    
+    
+    printf("%d\n", (q + add)*sign);
     return 0;
 }
