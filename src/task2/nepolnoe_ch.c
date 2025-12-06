@@ -1,33 +1,36 @@
 #include <stdio.h>
-#include <stdlib.h>
-int main() {
-    
-    int a,b;
-    scanf("%d %d", &a, &b);
 
-    int add = (a < 0 || b < 0) ? 1 : 0;
-    int q = 0;
-    int sign = 1;
-    
-    if (b == 0) {
-        printf("Нелья делить на 0\n");
-        return 0;
+int quotient(int a, int b)
+{
+    if (b == 0)
+    {
+        printf("Error: Division by zero\n");
     }
+
+    int sign = 1;
+    int q = 0;
 
     if ((a < 0 && b > 0) || (a > 0 && b < 0))
+    {
         sign = -1;
-    
-    
-    
-    a = abs(a);
-    b = abs(b);
+    }
 
-    while (a >= b) {
-        a -= b;
+    int absb = (b < 0) ? -b : b;
+    
+    while ((a > absb) || (a < -absb) || a < 0)
+    {
+        a = a -b * sign;
         q++;
     }
-    
-    
-    printf("%d\n", (q + add)*sign);
+
+    return q*sign;
+}
+
+
+int main()
+{
+    printf("%d\n",quotient(78,33));
+    printf("%d\n",quotient(-78,33));
+    printf("%d\n",quotient(-9,-13));
     return 0;
 }
